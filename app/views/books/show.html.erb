@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <p>
   <strong>Title:</strong>
   <%= @book.title %>
@@ -15,5 +13,10 @@
   <%= @book.author %>
 </p>
 
-<%= link_to 'Edit', edit_book_path(@book) %> |
-<%= link_to 'Back', books_path %>
+<% if user_signed_in? %>
+  <% if @book.user_id == current_user.id %>
+    <%= link_to 'Edit', edit_book_path(@book) %> |
+    <%= link_to 'Back', books_path %> |
+    <%= link_to "Delete", book_path(@book), method: "delete", data: { confirm: "Are you sure?" } %>
+  <%end%>
+<%end %>

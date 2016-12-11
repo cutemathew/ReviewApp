@@ -4,7 +4,11 @@ class BooksController < ApplicationController
   # GET /books
   # GET /books.json
   def index
-    @books = Book.all
+    if params[:category].blank?
+      @books = [] #Book.all.order("created_at desc")
+    else
+      @books = Category.find_by(name: params[:category]).books
+    end
   end
 
   # GET /books/1
@@ -14,17 +18,24 @@ class BooksController < ApplicationController
 
   # GET /books/new
   def new
-    @book = Book.new
+    @book = current_user.books.build
+    fetch_categories
   end
 
   # GET /books/1/edit
   def edit
+    fetch_categories
+  end
+
+  def fetch_categories
+    @categories = Category.all.map { |c| [c.name, c.id] }
   end
 
   # POST /books
   # POST /books.json
   def create
-    @book = Book.new(book_params)
+    @book = current_user.books.build(book_params)
+    @book.category_id = params[:category_id]
 
     respond_to do |format|
       if @book.save
@@ -69,6 +80,6 @@ class BooksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def book_params
-      params.require(:book).permit(:title, :description, :author)
+      params.require(:book).permit(:title, :description, :author, :user_id, :category_id)
     end
 end

@@ -1,5 +1,5 @@
 <%= simple_form_for(@book) do |f| %>
-<!--   <% if @book.errors.any? %>
+  <% if @book.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@book.errors.count, "error") %> prohibited this book from being saved:</h2>
 
@@ -9,9 +9,11 @@
       <% end %>
       </ul>
     </div>
-  <% end %> -->
+  <% end %>
 
-
+    <div class="dropdown">
+    <%= select_tag(:category_id, options_for_select(@categories), :prompt=> "select a category") %>
+    </div>  
     <%= f.input :title, label: "Title" %>
     <%= f.input :description, label: "Description" %>
     <%= f.input :author, label: "Author" %>
