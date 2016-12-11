@@ -5,7 +5,7 @@ class BooksController < ApplicationController
   # GET /books.json
   def index
     if params[:category].blank?
-      @books = [] #Book.all.order("created_at desc")
+      @books = Book.all.order("created_at desc")
     else
       @books = Category.find_by(name: params[:category]).books
     end
@@ -24,6 +24,7 @@ class BooksController < ApplicationController
 
   # GET /books/1/edit
   def edit
+    #@book = current_user.books.build
     fetch_categories
   end
 
@@ -80,6 +81,6 @@ class BooksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def book_params
-      params.require(:book).permit(:title, :description, :author, :user_id, :category_id)
+      params.require(:book).permit(:title, :description, :author, :user_id, :category_id, :avatar)
     end
 end
