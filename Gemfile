@@ -7,6 +7,7 @@ gem 'rails', '4.2.4'
 gem 'pg'
 # Use puma as application server
 gem 'puma'
+gem 'ratyrate'
 gem 'simple_form'
 gem 'bootstrap-sass'
 gem 'devise'

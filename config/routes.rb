@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  post '/rate' => 'rater#create', :as => 'rate'
   resources :categories
   devise_for :users
   

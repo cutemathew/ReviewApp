@@ -46,10 +46,14 @@
   </div>
 </nav>
 
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
 
 <div class="container">
+  <% unless notice.blank? %>
+    <div class="alert alert-success" role="alert"><%= notice %></div>
+  <% end %>
+  <% unless alert.blank? %>
+    <div class="alert alert-success" role="alert"><%= alert %></div>
+  <% end %>
   <%= yield %>
 </div>
 

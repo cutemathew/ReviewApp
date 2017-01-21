@@ -5,6 +5,12 @@
   <div class="col-md-8">
     <h2><%= @book.title %></h2>
     <h3><%= @book.author %></h3>
+    <%= puts rated_by_user?(@book) %>
+    <% if rated_by_user?(@book) %>
+      <%= rating_for @book, 'book_rating', imdb_avg: true %>
+    <% else %>
+      <%= rating_for @book, 'book_rating', star: 5, disable_after_rate: true, enable_half: true, half_show: true %>
+    <% end %>
     <h4>Category: <%= @book.category.name %></h4>
     <p><%= @book.description %></p>
   </div>
