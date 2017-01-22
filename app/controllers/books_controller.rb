@@ -24,6 +24,10 @@ class BooksController < ApplicationController
     fetch_categories
   end
 
+  def your_collections
+    @books = current_user.books
+  end
+
   # GET /books/1/edit
   def edit
     #@book = current_user.books.build

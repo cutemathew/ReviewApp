@@ -18,7 +18,8 @@
 
     <ul class="nav navbar-nav"%>
       <% if user_signed_in? %>
-        <li><%= link_to "Sign out", destroy_user_session_path, method: 'delete' %></li>
+        <!-- <li><%= link_to "Dashboard", books_path %></li> -->
+        <li><%= link_to "Your Books", your_collections_books_path %></li>
       <% else %>
         <li><%= link_to "Sign up", new_user_registration_path %></li>
         <li><%= link_to "Login", new_user_session_path %></li>
@@ -40,7 +41,8 @@
 
       <% if user_signed_in? %>
         <li><%= link_to "Add Book", new_book_path %></li>
-        <li><%= link_to "Add Category", new_category_path %></li>
+        <!-- <li><%= link_to "Add Category", new_category_path %></li> -->
+        <li><%= link_to "Sign out", destroy_user_session_path, method: 'delete' %></li>
       <% end %>
     </ul>
   </div>

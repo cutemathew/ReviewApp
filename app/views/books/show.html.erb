@@ -7,7 +7,7 @@
     <h3><%= @book.author %></h3>
     <%= puts rated_by_user?(@book) %>
     <% if rated_by_user?(@book) %>
-      <%= rating_for @book, 'book_rating', imdb_avg: true %>
+      <%= rating_for @book, 'book_rating', half_show: true %>
     <% else %>
       <%= rating_for @book, 'book_rating', star: 5, disable_after_rate: true, enable_half: true, half_show: true %>
     <% end %>
@@ -20,11 +20,10 @@
   <div class="col-md-8">
     <div>
       <%= render @book.reviews %>
-
       <% if user_signed_in? %>
-        <%# if @book.user_id != current_user.id %>
+        <% if @book.user_id != current_user.id %>
           <%= link_to "Add Review", new_book_review_path(@book) %>
-        <%# end %>
+        <% end %>
       <% end %>
     </div>
   </div>
