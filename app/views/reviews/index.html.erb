@@ -15,7 +15,6 @@
   <tbody>
     <% @reviews.each do |review| %>
       <tr>
-        <td><%= review.rating %></td>
         <td><%= review.comments %></td>
         <td><%= review.reference %></td>
         <td><%= link_to 'Show', review %></td>
